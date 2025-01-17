@@ -1,90 +1,33 @@
-// import { motion } from "framer-motion";
-
-// import { ReactNode } from "react";
-
-// interface CardProps {
-//   children: ReactNode;
-// }
-
-// const Card = ({ children }: CardProps) => {
-//   return (
-//     <motion.div
-//       className="relative w-full max-w-sm h-96 rounded-lg"
-//       style={{
-//         background: 'linear-gradient(to bottom, #4B0082, #000000)',
-//         // boxShadow: 'inset 0 2px 10px rgba(255,255,255,0.1)'
-//       }}
-//       initial={{ 
-//         opacity: 0, 
-//         rotateY: -15,
-//         x: -50,
-//         y: 0
-//       }}
-//       animate={{ 
-//         opacity: 1,
-//         rotateY: 0,
-//         x: 0,
-//         y: 0
-//       }}
-//       exit={{ 
-//         opacity: 0,
-//         rotateY: 15,
-//         x: 50 
-//       }}
-//       whileHover={{ 
-//         scale: 1.02,
-//         y: -10,
-//         boxShadow: `
-//           inset 0 2px 10px rgba(255,255,255,0.1),
-//           0 20px 40px rgba(75, 0, 130, 0.2),
-//           0 0 20px rgba(75, 0, 130, 0.1)
-//         `
-//       }}
-//       transition={{
-//         duration: 0.6,
-//         ease: [0.6, 0.01, -0.05, 0.95],
-//         opacity: {
-//           duration: 0.8,
-//           ease: "easeInOut"
-//         },
-//         whileHover: {
-//           duration: 0.8,
-//           ease: "easeOut"
-//         }
-//       }}
-//     >
-//       <div className="p-6 h-full text-white">
-//         {children}
-//       </div>
-//     </motion.div>
-//   );
-// };
-
-// export default Card;
-
 'use client'
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Twitter, Linkedin, Mail } from 'lucide-react';
+import { FounderCardProps } from '../types/founder';
 
-interface CardProps {
-  children: ReactNode;
+interface FounderCardComponentProps extends FounderCardProps {
+  onViewJobs: (id: string) => void;
 }
 
-const AppealingCard = ({ children }: CardProps) => {
+const FounderCard = ({
+  id,
+  companyName,
+  companyUrl,
+  companyImageUrl,
+  founderName,
+  founderImageUrl,
+  founderContacts,
+  onViewJobs
+}: FounderCardComponentProps) => {
   return (
     <motion.div
-      className="relative w-full max-w-sm h-96 rounded-xl overflow-hidden"
-      style={{
-        background: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255, 255, 255, 0.2)',
-      }}
+      className="relative w-full max-w-sm rounded-xl overflow-hidden bg-gradient-to-br from-purple-900 to-purple-950 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ 
-        scale: 1.05,
+        scale: 1.03,
         boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
       }}
       transition={{
@@ -92,22 +35,50 @@ const AppealingCard = ({ children }: CardProps) => {
         ease: "easeInOut",
       }}
     >
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-30"
-        initial={{ rotate: 0 }}
-        animate={{ rotate: 360 }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-      <div className="relative p-6 h-full text-white z-10">
-        {children}
+      <div className="relative h-40 w-full">
+        <Image
+          src={companyImageUrl || "/placeholder.svg"}
+          alt={companyName}
+          layout="fill"
+          objectFit="cover"
+        />
+        <Link href={companyUrl} className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+          <span className="text-white text-lg font-semibold">{companyName}</span>
+        </Link>
+      </div>
+      <div className="p-4">
+        <div className="flex items-center mb-4">
+          <Image
+            src={founderImageUrl || "/placeholder.svg"}
+            alt={founderName}
+            width={60}
+            height={60}
+            className="rounded-full mr-4"
+          />
+          <div>
+            <h2 className="text-xl font-semibold">{founderName}</h2>
+            <p className="text-gray-600">Founder of {companyName}</p>
+          </div>
+        </div>
+        <div className="flex justify-center space-x-4 mb-4">
+          {founderContacts.map((contact, index) => (
+            <Link key={index} href={contact.url} className="text-gray-600 hover:text-gray-900">
+              {contact.type === 'twitter' && <Twitter size={20} />}
+              {contact.type === 'linkedin' && <Linkedin size={20} />}
+              {contact.type === 'email' && <Mail size={20} />}
+            </Link>
+          ))}
+        </div>
+        <button 
+          onClick={() => onViewJobs(id)} 
+          className="w-full text-center bg-black text-white py-2 rounded-md hover:bg-purple-500 transition-colors"
+        >
+          View Jobs
+        </button>
       </div>
     </motion.div>
   );
 };
 
-export default AppealingCard;
+export default FounderCard;
 
