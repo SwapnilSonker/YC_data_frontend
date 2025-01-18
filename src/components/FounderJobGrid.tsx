@@ -39,14 +39,18 @@ const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
             transition={{ duration: 0.2, animationDirection: "normal" }}
             onAnimationComplete={() => setIsAnimating(false)}
           >
-            <div 
-              className='flip-card-front absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
+            <motion.div 
+             initial={{opacity:0 , y:0}}
+             animate={{y:0}}
+             whileInView={{opacity: 1, y:-20}}
+             transition={{duration:0.4, ease:"easeInOut"}}
+             className='flip-card-front absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
             >
               <FounderCard
                 {...founder}
                 onViewJobs={() => handleFlip(founder.id)}
               />
-            </div>
+            </motion.div>
             <div 
               className='flip-card-back absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
             >
