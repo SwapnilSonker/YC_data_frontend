@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-// import FounderCard from './FounderCard';
+import { motion } from 'framer-motion';
 import JobCard from './JobCard';
 import { FounderCardProps } from '../types/founder';
 import FounderCard from './AnimatedCard';
@@ -12,47 +11,56 @@ interface FounderJobGridProps {
 }
 
 const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
-  const [activeJobCard, setActiveJobCard] = useState<string | null>(null);
+  const [flippedCards, setFlippedCards] = useState<{ [key: string]: boolean }>({});
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleViewJobs = (id: string) => {
-    setActiveJobCard(id);
-  };
-
-  const handleBackToFounder = () => {
-    setActiveJobCard(null);
+  const handleFlip = (id: string) => {
+    if (!isAnimating) {
+      setFlippedCards(prev => ({
+        ...prev,
+        [id]: !prev[id]
+      }));
+      setIsAnimating(true);
+    }
   };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      <AnimatePresence>
-        {founders.map((founder) => (
+      {founders.map((founder) => (
+        <div 
+          key={founder.id}
+          className='flip-card w-full h-[360px] rounded-md cursor-pointer flex'
+          onClick={() => handleFlip(founder.id)}
+        >
           <motion.div
-            key={founder.id}
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{ display: activeJobCard && activeJobCard !== founder.id ? 'none' : 'block' }}
+            className='flip-card-inner w-full h-full relative'
+            initial={false}
+            animate={{ rotateY: flippedCards[founder.id] ? 180 : 360 }}
+            transition={{ duration: 0.2, animationDirection: "normal" }}
+            onAnimationComplete={() => setIsAnimating(false)}
           >
-            {activeJobCard === founder.id ? (
+            <div 
+              className='flip-card-front absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
+            >
+              <FounderCard
+                {...founder}
+                onViewJobs={() => handleFlip(founder.id)}
+              />
+            </div>
+            <div 
+              className='flip-card-back absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
+            >
               <JobCard
                 companyName={founder.companyName}
                 jobs={founder.jobs}
-                onBack={handleBackToFounder}
+                onBack={() => handleFlip(founder.id)}
               />
-            ) : (
-              <FounderCard
-                {...founder}
-                onViewJobs={handleViewJobs}
-              />
-            )}
+            </div>
           </motion.div>
-        ))}
-      </AnimatePresence>
+        </div>
+      ))}
     </div>
   );
 };
 
 export default FounderJobGrid;
-

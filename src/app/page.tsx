@@ -1,5 +1,6 @@
 "use client";
 
+import CardFlip from "@/components/Flip/CardFlip";
 import FounderJobGrid from "@/components/FounderJobGrid";
 import Navbar from "@/components/NavBar";
 import { motion } from "framer-motion";
@@ -112,6 +113,93 @@ const founders = [
         applyLink: "https://healthtech.com/apply/mobiledev"
       }
     ]
+  },
+  {
+    id: '4',
+    companyName: "HealthTech",
+    companyUrl: "https://healthtech.com",
+    companyImageUrl: "/placeholder.svg?height=160&width=320",
+    founderName: "Sarah Johnson",
+    founderImageUrl: "/placeholder.svg?height=60&width=60",
+    founderContacts: [
+      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+      { type: 'email', url: 'mailto:sarah@healthtech.com' },
+    ],
+    jobs: [
+      {
+        title: "Data Scientist",
+        description: "Join our team to analyze health data and improve patient outcomes.",
+        location: "Boston, MA",
+        salary: "$100,000 - $150,000",
+        applyLink: "https://healthtech.com/apply/datascientist"
+      },
+      {
+        title: "Mobile App Developer",
+        description: "Help us create innovative health tracking apps for iOS and Android.",
+        location: "Remote",
+        salary: "$90,000 - $130,000",
+        applyLink: "https://healthtech.com/apply/mobiledev"
+      }
+    ]
+  },
+  {
+    id: '5',
+    companyName: "HealthTech",
+    companyUrl: "https://healthtech.com",
+    companyImageUrl: "/placeholder.svg?height=160&width=320",
+    founderName: "Sarah Johnson",
+    founderImageUrl: "/placeholder.svg?height=60&width=60",
+    founderContacts: [
+      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+      { type: 'email', url: 'mailto:sarah@healthtech.com' },
+    ],
+    jobs: [
+      {
+        title: "Data Scientist",
+        description: "Join our team to analyze health data and improve patient outcomes.",
+        location: "Boston, MA",
+        salary: "$100,000 - $150,000",
+        applyLink: "https://healthtech.com/apply/datascientist"
+      },
+      {
+        title: "Mobile App Developer",
+        description: "Help us create innovative health tracking apps for iOS and Android.",
+        location: "Remote",
+        salary: "$90,000 - $130,000",
+        applyLink: "https://healthtech.com/apply/mobiledev"
+      }
+    ]
+  },
+  {
+    id: '6',
+    companyName: "HealthTech",
+    companyUrl: "https://healthtech.com",
+    companyImageUrl: "/placeholder.svg?height=160&width=320",
+    founderName: "Sarah Johnson",
+    founderImageUrl: "/placeholder.svg?height=60&width=60",
+    founderContacts: [
+      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+      { type: 'email', url: 'mailto:sarah@healthtech.com' },
+    ],
+    jobs: [
+      {
+        title: "Data Scientist",
+        description: "Join our team to analyze health data and improve patient outcomes.",
+        location: "Boston, MA",
+        salary: "$100,000 - $150,000",
+        applyLink: "https://healthtech.com/apply/datascientist"
+      },
+      {
+        title: "Mobile App Developer",
+        description: "Help us create innovative health tracking apps for iOS and Android.",
+        location: "Remote",
+        salary: "$90,000 - $130,000",
+        applyLink: "https://healthtech.com/apply/mobiledev"
+      }
+    ]
   }
 ];
 
@@ -153,14 +241,13 @@ export default function Home() {
           A Platform where you will find currently hiring YC Startups Information
         </motion.p>
         <motion.div
-        className="relative pt-8"
+        className="relative pt-8 p-5"
         initial={{opacity: 0 , y:50}}
         animate={{opacity:1, y:0}}
-        transition={{ duration: 1, delay: 0.4 }}
+        transition={{ duration: 1, delay: 0.2 }}
         >
-          {/* <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gr/ */}
       <FounderJobGrid founders={founders}  />
-    {/* </div> */}
+      {/* <CardFlip /> */}
         </motion.div>
       </motion.div>
     </main>
