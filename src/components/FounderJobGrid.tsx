@@ -7,7 +7,7 @@ import { FounderCardProps } from '../types/founder';
 import FounderCard from './AnimatedCard';
 
 interface FounderJobGridProps {
-  founders: FounderCardProps[];
+  founders?: FounderCardProps[];
 }
 
 const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
@@ -26,14 +26,14 @@ const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {founders.map((founder) => (
-        <div 
+      {founders?.map((founder: FounderCardProps) => (
+        <motion.div 
           key={founder.id}
-          className='flip-card w-full h-[360px] rounded-md cursor-pointer flex'
+          className='flip-card h-[360px] rounded-md cursor-pointer'
           onClick={() => handleFlip(founder.id)}
         >
           <motion.div
-            className='flip-card-inner w-full h-full relative'
+            className='flip-card-inner h-full relative'
             initial={false}
             animate={{ rotateY: flippedCards[founder.id] ? 180 : 360 }}
             transition={{ duration: 0.2, animationDirection: "normal" }}
@@ -44,7 +44,7 @@ const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
              animate={{y:0}}
              whileInView={{opacity: 1, y:-20}}
              transition={{duration:0.4, ease:"easeInOut"}}
-             className='flip-card-front absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
+             className='flip-card-front absolute inset-0 bg-cover border text-white rounded-lg overflow-hidden'
             >
               <FounderCard
                 {...founder}
@@ -52,7 +52,7 @@ const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
               />
             </motion.div>
             <div 
-              className='flip-card-back absolute w-full h-full bg-cover border text-white rounded-lg overflow-hidden'
+              className='flip-card-back absolute inset-0 bg-cover border text-white rounded-lg overflow-hidden'
             >
               <JobCard
                 companyName={founder.companyName}
@@ -61,7 +61,7 @@ const FounderJobGrid = ({ founders }: FounderJobGridProps) => {
               />
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

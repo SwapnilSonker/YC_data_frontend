@@ -3,6 +3,7 @@
 import CardFlip from "@/components/Flip/CardFlip";
 import FounderJobGrid from "@/components/FounderJobGrid";
 import Navbar from "@/components/NavBar";
+import { FounderCardProps } from "@/types/founder";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -33,178 +34,240 @@ const ShootingStar = ({ delay = 0 }) => {
   );
 };
 
-const founders = [
-  {
-    id: '1',
-    companyName: "TechInnovate",
-    companyUrl: "https://techinnovate.com",
-    companyImageUrl: "/placeholder.svg?height=160&width=320",
-    founderName: "Jane Doe",
-    founderImageUrl: "/placeholder.svg?height=60&width=60",
-    founderContacts: [
-      { type: 'twitter', url: 'https://twitter.com/janedoe' },
-      { type: 'linkedin', url: 'https://linkedin.com/in/janedoe' },
-      { type: 'email', url: 'mailto:jane@techinnovate.com' },
-    ],
-    jobs: [
-      {
-        title: "Frontend Developer",
-        description: "We're looking for a skilled frontend developer to join our team.",
-        location: "Remote",
-        salary: "$80,000 - $120,000",
-        applyLink: "https://techinnovate.com/apply/frontend"
-      },
-      {
-        title: "UX Designer",
-        description: "Join our design team and help create amazing user experiences.",
-        location: "New York, NY",
-        salary: "$90,000 - $130,000",
-        applyLink: "https://techinnovate.com/apply/uxdesigner"
-      }
-    ]
-  },
-  {
-    id: '2',
-    companyName: "GreenEnergy",
-    companyUrl: "https://greenenergy.com",
-    companyImageUrl: "/placeholder.svg?height=160&width=320",
-    founderName: "John Smith",
-    founderImageUrl: "/placeholder.svg?height=60&width=60",
-    founderContacts: [
-      { type: 'twitter', url: 'https://twitter.com/johnsmith' },
-      { type: 'linkedin', url: 'https://linkedin.com/in/johnsmith' },
-      { type: 'email', url: 'mailto:john@greenenergy.com' },
-    ],
-    jobs: [
-      {
-        title: "Solar Panel Technician",
-        description: "Help us install and maintain solar panels for residential and commercial properties.",
-        location: "Los Angeles, CA",
-        salary: "$60,000 - $80,000",
-        applyLink: "https://greenenergy.com/apply/solartechnician"
-      }
-    ]
-  },
-  {
-    id: '3',
-    companyName: "HealthTech",
-    companyUrl: "https://healthtech.com",
-    companyImageUrl: "/placeholder.svg?height=160&width=320",
-    founderName: "Sarah Johnson",
-    founderImageUrl: "/placeholder.svg?height=60&width=60",
-    founderContacts: [
-      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
-      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
-      { type: 'email', url: 'mailto:sarah@healthtech.com' },
-    ],
-    jobs: [
-      {
-        title: "Data Scientist",
-        description: "Join our team to analyze health data and improve patient outcomes.",
-        location: "Boston, MA",
-        salary: "$100,000 - $150,000",
-        applyLink: "https://healthtech.com/apply/datascientist"
-      },
-      {
-        title: "Mobile App Developer",
-        description: "Help us create innovative health tracking apps for iOS and Android.",
-        location: "Remote",
-        salary: "$90,000 - $130,000",
-        applyLink: "https://healthtech.com/apply/mobiledev"
-      }
-    ]
-  },
-  {
-    id: '4',
-    companyName: "HealthTech",
-    companyUrl: "https://healthtech.com",
-    companyImageUrl: "/placeholder.svg?height=160&width=320",
-    founderName: "Sarah Johnson",
-    founderImageUrl: "/placeholder.svg?height=60&width=60",
-    founderContacts: [
-      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
-      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
-      { type: 'email', url: 'mailto:sarah@healthtech.com' },
-    ],
-    jobs: [
-      {
-        title: "Data Scientist",
-        description: "Join our team to analyze health data and improve patient outcomes.",
-        location: "Boston, MA",
-        salary: "$100,000 - $150,000",
-        applyLink: "https://healthtech.com/apply/datascientist"
-      },
-      {
-        title: "Mobile App Developer",
-        description: "Help us create innovative health tracking apps for iOS and Android.",
-        location: "Remote",
-        salary: "$90,000 - $130,000",
-        applyLink: "https://healthtech.com/apply/mobiledev"
-      }
-    ]
-  },
-  {
-    id: '5',
-    companyName: "HealthTech",
-    companyUrl: "https://healthtech.com",
-    companyImageUrl: "/placeholder.svg?height=160&width=320",
-    founderName: "Sarah Johnson",
-    founderImageUrl: "/placeholder.svg?height=60&width=60",
-    founderContacts: [
-      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
-      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
-      { type: 'email', url: 'mailto:sarah@healthtech.com' },
-    ],
-    jobs: [
-      {
-        title: "Data Scientist",
-        description: "Join our team to analyze health data and improve patient outcomes.",
-        location: "Boston, MA",
-        salary: "$100,000 - $150,000",
-        applyLink: "https://healthtech.com/apply/datascientist"
-      },
-      {
-        title: "Mobile App Developer",
-        description: "Help us create innovative health tracking apps for iOS and Android.",
-        location: "Remote",
-        salary: "$90,000 - $130,000",
-        applyLink: "https://healthtech.com/apply/mobiledev"
-      }
-    ]
-  },
-  {
-    id: '6',
-    companyName: "HealthTech",
-    companyUrl: "https://healthtech.com",
-    companyImageUrl: "/placeholder.svg?height=160&width=320",
-    founderName: "Sarah Johnson",
-    founderImageUrl: "/placeholder.svg?height=60&width=60",
-    founderContacts: [
-      { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
-      { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
-      { type: 'email', url: 'mailto:sarah@healthtech.com' },
-    ],
-    jobs: [
-      {
-        title: "Data Scientist",
-        description: "Join our team to analyze health data and improve patient outcomes.",
-        location: "Boston, MA",
-        salary: "$100,000 - $150,000",
-        applyLink: "https://healthtech.com/apply/datascientist"
-      },
-      {
-        title: "Mobile App Developer",
-        description: "Help us create innovative health tracking apps for iOS and Android.",
-        location: "Remote",
-        salary: "$90,000 - $130,000",
-        applyLink: "https://healthtech.com/apply/mobiledev"
-      }
-    ]
-  }
-];
+// const founders = [
+//   {
+//     id: '1',
+//     companyName: "TechInnovate",
+//     companyUrl: "https://techinnovate.com",
+//     companyImageUrl: "/placeholder.svg?height=160&width=320",
+//     founderName: "Jane Doe",
+//     founderImageUrl: "/placeholder.svg?height=60&width=60",
+//     founderContacts: [
+//       { type: 'twitter', url: 'https://twitter.com/janedoe' },
+//       { type: 'linkedin', url: 'https://linkedin.com/in/janedoe' },
+//       { type: 'email', url: 'mailto:jane@techinnovate.com' },
+//     ],
+//     jobs: [
+//       {
+//         title: "Frontend Developer",
+//         description: "We're looking for a skilled frontend developer to join our team.",
+//         location: "Remote",
+//         salary: "$80,000 - $120,000",
+//         applyLink: "https://techinnovate.com/apply/frontend"
+//       },
+//       {
+//         title: "UX Designer",
+//         description: "Join our design team and help create amazing user experiences.",
+//         location: "New York, NY",
+//         salary: "$90,000 - $130,000",
+//         applyLink: "https://techinnovate.com/apply/uxdesigner"
+//       }
+//     ]
+//   },
+//   {
+//     id: '2',
+//     companyName: "GreenEnergy",
+//     companyUrl: "https://greenenergy.com",
+//     companyImageUrl: "/placeholder.svg?height=160&width=320",
+//     founderName: "John Smith",
+//     founderImageUrl: "/placeholder.svg?height=60&width=60",
+//     founderContacts: [
+//       { type: 'twitter', url: 'https://twitter.com/johnsmith' },
+//       { type: 'linkedin', url: 'https://linkedin.com/in/johnsmith' },
+//       { type: 'email', url: 'mailto:john@greenenergy.com' },
+//     ],
+//     jobs: [
+//       {
+//         title: "Solar Panel Technician",
+//         description: "Help us install and maintain solar panels for residential and commercial properties.",
+//         location: "Los Angeles, CA",
+//         salary: "$60,000 - $80,000",
+//         applyLink: "https://greenenergy.com/apply/solartechnician"
+//       }
+//     ]
+//   },
+//   {
+//     id: '3',
+//     companyName: "HealthTech",
+//     companyUrl: "https://healthtech.com",
+//     companyImageUrl: "/placeholder.svg?height=160&width=320",
+//     founderName: "Sarah Johnson",
+//     founderImageUrl: "/placeholder.svg?height=60&width=60",
+//     founderContacts: [
+//       { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+//       { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+//       { type: 'email', url: 'mailto:sarah@healthtech.com' },
+//     ],
+//     jobs: [
+//       {
+//         title: "Data Scientist",
+//         description: "Join our team to analyze health data and improve patient outcomes.",
+//         location: "Boston, MA",
+//         salary: "$100,000 - $150,000",
+//         applyLink: "https://healthtech.com/apply/datascientist"
+//       },
+//       {
+//         title: "Mobile App Developer",
+//         description: "Help us create innovative health tracking apps for iOS and Android.",
+//         location: "Remote",
+//         salary: "$90,000 - $130,000",
+//         applyLink: "https://healthtech.com/apply/mobiledev"
+//       }
+//     ]
+//   },
+//   {
+//     id: '4',
+//     companyName: "HealthTech",
+//     companyUrl: "https://healthtech.com",
+//     companyImageUrl: "/placeholder.svg?height=160&width=320",
+//     founderName: "Sarah Johnson",
+//     founderImageUrl: "/placeholder.svg?height=60&width=60",
+//     founderContacts: [
+//       { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+//       { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+//       { type: 'email', url: 'mailto:sarah@healthtech.com' },
+//     ],
+//     jobs: [
+//       {
+//         title: "Data Scientist",
+//         description: "Join our team to analyze health data and improve patient outcomes.",
+//         location: "Boston, MA",
+//         salary: "$100,000 - $150,000",
+//         applyLink: "https://healthtech.com/apply/datascientist"
+//       },
+//       {
+//         title: "Mobile App Developer",
+//         description: "Help us create innovative health tracking apps for iOS and Android.",
+//         location: "Remote",
+//         salary: "$90,000 - $130,000",
+//         applyLink: "https://healthtech.com/apply/mobiledev"
+//       }
+//     ]
+//   },
+//   {
+//     id: '5',
+//     companyName: "HealthTech",
+//     companyUrl: "https://healthtech.com",
+//     companyImageUrl: "/placeholder.svg?height=160&width=320",
+//     founderName: "Sarah Johnson",
+//     founderImageUrl: "/placeholder.svg?height=60&width=60",
+//     founderContacts: [
+//       { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+//       { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+//       { type: 'email', url: 'mailto:sarah@healthtech.com' },
+//     ],
+//     jobs: [
+//       {
+//         title: "Data Scientist",
+//         description: "Join our team to analyze health data and improve patient outcomes.",
+//         location: "Boston, MA",
+//         salary: "$100,000 - $150,000",
+//         applyLink: "https://healthtech.com/apply/datascientist"
+//       },
+//       {
+//         title: "Mobile App Developer",
+//         description: "Help us create innovative health tracking apps for iOS and Android.",
+//         location: "Remote",
+//         salary: "$90,000 - $130,000",
+//         applyLink: "https://healthtech.com/apply/mobiledev"
+//       }
+//     ]
+//   },
+//   {
+//     id: '6',
+//     companyName: "HealthTech",
+//     companyUrl: "https://healthtech.com",
+//     companyImageUrl: "/placeholder.svg?height=160&width=320",
+//     founderName: "Sarah Johnson",
+//     founderImageUrl: "/placeholder.svg?height=60&width=60",
+//     founderContacts: [
+//       { type: 'twitter', url: 'https://twitter.com/sarahjohnson' },
+//       { type: 'linkedin', url: 'https://linkedin.com/in/sarahjohnson' },
+//       { type: 'email', url: 'mailto:sarah@healthtech.com' },
+//     ],
+//     jobs: [
+//       {
+//         title: "Data Scientist",
+//         description: "Join our team to analyze health data and improve patient outcomes.",
+//         location: "Boston, MA",
+//         salary: "$100,000 - $150,000",
+//         applyLink: "https://healthtech.com/apply/datascientist"
+//       },
+//       {
+//         title: "Mobile App Developer",
+//         description: "Help us create innovative health tracking apps for iOS and Android.",
+//         location: "Remote",
+//         salary: "$90,000 - $130,000",
+//         applyLink: "https://healthtech.com/apply/mobiledev"
+//       }
+//     ]
+//   }
+// ];
+const founders = {
+  id: '1',
+  companyName: 'TechCorp',
+  companyUrl: 'https://techcorp.com',
+  companyImageUrl: '/company-logo.png',
+  founders: [
+    {
+      name: 'John Doe',
+      imageUrl: '/john.png',
+      contacts: [
+        { type: 'twitter', url: 'https://twitter.com/john' },
+        { type: 'linkedin', url: 'https://linkedin.com/john' }
+      ]
+    },
+    {
+      name: 'Jane Smith',
+      imageUrl: '/jane.png',
+      contacts: [
+        { type: 'twitter', url: 'https://twitter.com/jane' },
+        { type: 'email', url: 'mailto:jane@techcorp.com' }
+      ]
+    }
+  ],
+  jobs: [/* job listings */]
+};
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const sampleFounders: FounderCardProps[] = [
+    {
+      id: '1',
+      companyName: 'Tech Innovators',
+      companyUrl: 'https://techinnovators.com',
+      companyImageUrl: '/images/tech-innovators.png',
+      founders: [
+        {
+          name: 'Jane Smith',
+          imageUrl: '/images/jane-smith.jpg',
+          contacts: [
+            { type: 'twitter', url: 'https://twitter.com/janesmith' },
+            { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
+          ]
+        },
+        {
+          name: 'Jane Smith',
+          imageUrl: '/images/jane-smith.jpg',
+          contacts: [
+            { type: 'twitter', url: 'https://twitter.com/janesmith' },
+            { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
+          ]
+        }
+      ],
+      jobs: [
+        {
+          title: 'Senior Developer',
+          description: 'Looking for an experienced developer...',
+          location: 'Remote',
+          type: 'Full-time',
+          id: ""
+        }
+      ]
+    },
+    
+    // Add more founders as needed
+  ];
 
   useEffect(() => {
     setMounted(true);
@@ -246,7 +309,7 @@ export default function Home() {
         animate={{opacity:1, y:0}}
         transition={{ duration: 1, delay: 0.2 }}
         >
-      <FounderJobGrid founders={founders}  />
+      <FounderJobGrid founders={sampleFounders}  />
       {/* <CardFlip /> */}
         </motion.div>
       </motion.div>
