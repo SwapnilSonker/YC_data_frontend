@@ -110,7 +110,7 @@ const FounderCard = ({
             alt={""}
             layout="fill"
             objectFit="cover"
-            className="rounded-full bg-red-800 m-2"
+            className="rounded-full m-2"
           />
         </div>
         <Link
@@ -123,39 +123,133 @@ const FounderCard = ({
           </span>
         </Link>
       </div>
-      {/* <div className="">{companyName}</div> */}
 
-      <div className="space-y-4 mb-6">
+      {founders.length < 5 ? <div className={`grid ${founders.length > 2 ? `grid-cols-${founders.length}`: 'grid-cols-2'} auto-rows-fr gap-2 px-4 mb-6`}>
         {founders.map((founder, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <div className="flex items-center mb-2">
-              <Image
-                src={founder.imageUrl}
-                alt={founder.name}
-                width={40}
-                height={40}
-                className="rounded-full mr-3"
-              />
-              <h3 className="text-white font-medium">{founder.name}</h3>
+          
+            <div key={index} className="flex flex-col ml-2 min-w-[100px]" >
+              <div className="mb-2">
+                <img
+                  src={founder.imageUrl}
+                  alt={founder.name}
+                  width={40}
+                  height={40}
+                  className="rounded-full mr-3 truncate"
+                />
+                <h3 className="text-white font-medium w-0">{founder.name}</h3>
+              </div>
+              <div className="flex space-x-3">
+                {founder.contacts.map((contact, idx) => (
+                  <Link
+                    key={idx}
+                    href={contact.url}
+                    className="text-gray-300 hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {contact.type === "twitter" && <Twitter size={18} />}
+                    {contact.type === "linkedin" && <Linkedin size={18} />}
+                    {contact.type === "email" && <Mail size={18} />}
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="flex space-x-3">
-              {founder.contacts.map((contact, idx) => (
-                <Link 
-                  key={idx} 
-                  href={contact.url} 
-                  className="text-gray-300 hover:text-white transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {contact.type === 'twitter' && <Twitter size={18} />}
-                  {contact.type === 'linkedin' && <Linkedin size={18} />}
-                  {contact.type === 'email' && <Mail size={18} />}
-                </Link>
-              ))}
+        ))}
+      </div>: <div className="overflow-x-auto mb-6 px-4">
+        <div className="flex gap-4 min-w-min">
+          {founders.map((founder, index) => (
+            <div key={index} className="flex flex-col items-center flex-shrink-0">
+              <div className="flex items-center gap-2 mb-2">
+                <Image
+                  src={founder.imageUrl}
+                  alt={founder.name}
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <h3 className="text-white font-medium text-sm whitespace-nowrap">{founder.name}</h3>
+              </div>
+              <div className="flex space-x-3">
+                {founder.contacts.map((contact, idx) => (
+                  <Link
+                    key={idx}
+                    href={contact.url}
+                    className="text-gray-300 hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {contact.type === "twitter" && <Twitter size={18} />}
+                    {contact.type === "linkedin" && <Linkedin size={18} />}
+                    {contact.type === "email" && <Mail size={18} />}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
+      </div>}
+      {/* <div className={`grid ${founders.length > 2 ? `grid-cols-${founders.length}`: 'grid-cols-2'} auto-rows-fr overflow-x-auto gap-2 px-4 mb-6`}>
+        {founders.map((founder, index) => (
+          
+            <div key={index} className="flex flex-col ml-2 min-w-[100px]" >
+              <div className="mb-2">
+                <img
+                  src={founder.imageUrl}
+                  alt={founder.name}
+                  width={40}
+                  height={40}
+                  className="rounded-full mr-3 truncate"
+                />
+                <h3 className="text-white font-medium w-0">{founder.name}</h3>
+              </div>
+              <div className="flex space-x-3">
+                {founder.contacts.map((contact, idx) => (
+                  <Link
+                    key={idx}
+                    href={contact.url}
+                    className="text-gray-300 hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {contact.type === "twitter" && <Twitter size={18} />}
+                    {contact.type === "linkedin" && <Linkedin size={18} />}
+                    {contact.type === "email" && <Mail size={18} />}
+                  </Link>
+                ))}
+              </div>
+            </div>
         ))}
       </div>
-            <button
+      <div className="overflow-x-auto mb-6 px-4">
+        <div className="flex gap-4 min-w-min">
+          {founders.map((founder, index) => (
+            <div key={index} className="flex flex-col items-center flex-shrink-0">
+              <div className="flex items-center gap-2 mb-2">
+                <Image
+                  src={founder.imageUrl}
+                  alt={founder.name}
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <h3 className="text-white font-medium text-sm whitespace-nowrap">{founder.name}</h3>
+              </div>
+              <div className="flex space-x-3">
+                {founder.contacts.map((contact, idx) => (
+                  <Link
+                    key={idx}
+                    href={contact.url}
+                    className="text-gray-300 hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {contact.type === "twitter" && <Twitter size={18} />}
+                    {contact.type === "linkedin" && <Linkedin size={18} />}
+                    {contact.type === "email" && <Mail size={18} />}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div> */}
+      <button
         onClick={(e) => {
           e.stopPropagation();
           onViewJobs(id);

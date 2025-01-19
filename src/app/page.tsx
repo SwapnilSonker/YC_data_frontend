@@ -236,11 +236,11 @@ export default function Home() {
       id: '1',
       companyName: 'Tech Innovators',
       companyUrl: 'https://techinnovators.com',
-      companyImageUrl: '/images/tech-innovators.png',
+      companyImageUrl: 'https://bookface-images.s3.amazonaws.com/avatars/ba4c9ce284442c861a8c2b97137389e78b23b02e.jpg',
       founders: [
         {
           name: 'Jane Smith',
-          imageUrl: '/images/jane-smith.jpg',
+          imageUrl: 'https://bookface-images.s3.amazonaws.com/avatars/d1b6468b1458aa7d4106c4631f034d5dc865016f.jpg',
           contacts: [
             { type: 'twitter', url: 'https://twitter.com/janesmith' },
             { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
@@ -248,7 +248,31 @@ export default function Home() {
         },
         {
           name: 'Jane Smith',
-          imageUrl: '/images/jane-smith.jpg',
+          imageUrl: 'https://bookface-images.s3.amazonaws.com/avatars/69e6909d5a0a2614231d2debca33b7aa2f68a594.jpg',
+          contacts: [
+            { type: 'twitter', url: 'https://twitter.com/janesmith' },
+            { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
+          ]
+        },
+        {
+          name: 'Jane Smith',
+          imageUrl: 'https://bookface-images.s3.amazonaws.com/avatars/69e6909d5a0a2614231d2debca33b7aa2f68a594.jpg',
+          contacts: [
+            { type: 'twitter', url: 'https://twitter.com/janesmith' },
+            { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
+          ]
+        },
+        {
+          name: 'Jane Smith',
+          imageUrl: 'https://bookface-images.s3.amazonaws.com/avatars/69e6909d5a0a2614231d2debca33b7aa2f68a594.jpg',
+          contacts: [
+            { type: 'twitter', url: 'https://twitter.com/janesmith' },
+            { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
+          ]
+        },
+        {
+          name: 'Jane Smith',
+          imageUrl: 'https://bookface-images.s3.amazonaws.com/avatars/69e6909d5a0a2614231d2debca33b7aa2f68a594.jpg',
           contacts: [
             { type: 'twitter', url: 'https://twitter.com/janesmith' },
             { type: 'linkedin', url: 'https://linkedin.com/in/janesmith' }
